@@ -22,3 +22,9 @@ WHERE item_id = $1
 ORDER BY item_id ASC
 LIMIT $2
 OFFSET $3;
+
+-- name: UpdateGallery :one
+UPDATE galleries
+SET owner_id = $3, exchange_at = $4
+WHERE owner_id = $1 AND item_id = $2
+RETURNING *;

@@ -39,7 +39,8 @@ CREATE TABLE "categories" (
 CREATE TABLE "galleries" (
   "id" bigserial PRIMARY KEY,
   "owner_id" bigint NOT NULL,
-  "item_id" bigint NOT NULL,
+  "item_id" bigint UNIQUE NOT NULL,
+  "exchange_at" timestamptz NOT NULL DEFAULT '2000-01-01 00:00:00.000000+00',
   "created_at" timestamptz NOT NULL DEFAULT 'now()'
 );
 
@@ -52,9 +53,28 @@ CREATE TABLE "sessions" (
   "expired_at" timestamptz NOT NULL
 );
 
-CREATE INDEX ON "galleries" USING BTREE ("owner_id");
+CREATE TABLE "approval" (
+  "id" bigserial PRIMARY KEY,
+  "from_account_id" bigint NOT NULL,
+  "from_item_id" bigint NOT NULL,
+  "from_a_approval" boolean NOT NULL DEFAULT false,
+  "to_account_id" bigint NOT NULL,
+  "to_item_id" bigint NOT NULL,
+  "to_a_approval" boolean NOT NULL DEFAULT false,
+  "created_at" timestamptz NOT NULL DEFAULT 'now()'
+);
 
-CREATE INDEX ON "galleries" USING BTREE ("item_id");
+CREATE TABLE "exchanges" (
+  "id" bigserial PRIMARY KEY,
+  "from_account_id" bigint NOT NULL,
+  "to_account_id" bigint NOT NULL,
+  "item_id" bigint NOT NULL,
+  "created_at" timestamptz NOT NULL DEFAULT 'now()'
+);
+
+CREATE UNIQUE INDEX ON "galleries" USING BTREE ("owner_id");
+
+CREATE UNIQUE INDEX ON "galleries" USING BTREE ("item_id");
 
 ALTER TABLE "accounts" ADD FOREIGN KEY ("owner") REFERENCES "users" ("user_name");
 
@@ -69,3 +89,17 @@ ALTER TABLE "galleries" ADD FOREIGN KEY ("owner_id") REFERENCES "accounts" ("id"
 ALTER TABLE "galleries" ADD FOREIGN KEY ("item_id") REFERENCES "items" ("id");
 
 ALTER TABLE "sessions" ADD FOREIGN KEY ("user_name") REFERENCES "users" ("user_name");
+
+ALTER TABLE "approval" ADD FOREIGN KEY ("from_account_id") REFERENCES "accounts" ("id");
+
+ALTER TABLE "approval" ADD FOREIGN KEY ("from_item_id") REFERENCES "galleries" ("item_id");
+
+ALTER TABLE "approval" ADD FOREIGN KEY ("to_account_id") REFERENCES "accounts" ("id");
+
+ALTER TABLE "approval" ADD FOREIGN KEY ("to_item_id") REFERENCES "galleries" ("item_id");
+
+ALTER TABLE "exchanges" ADD FOREIGN KEY ("from_account_id") REFERENCES "accounts" ("id");
+
+ALTER TABLE "exchanges" ADD FOREIGN KEY ("to_account_id") REFERENCES "accounts" ("id");
+
+ALTER TABLE "exchanges" ADD FOREIGN KEY ("item_id") REFERENCES "galleries" ("item_id");

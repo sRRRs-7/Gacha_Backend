@@ -15,10 +15,29 @@ type Account struct {
 	CreatedAt time.Time `json:"created_at"`
 }
 
+type Approval struct {
+	ID            int64     `json:"id"`
+	FromAccountID int64     `json:"from_account_id"`
+	FromItemID    int64     `json:"from_item_id"`
+	FromAApproval bool      `json:"from_a_approval"`
+	ToAccountID   int64     `json:"to_account_id"`
+	ToItemID      int64     `json:"to_item_id"`
+	ToAApproval   bool      `json:"to_a_approval"`
+	CreatedAt     time.Time `json:"created_at"`
+}
+
 type Category struct {
 	ID        int64     `json:"id"`
 	Category  string    `json:"category"`
 	CreatedAt time.Time `json:"created_at"`
+}
+
+type Exchange struct {
+	ID            int64     `json:"id"`
+	FromAccountID int64     `json:"from_account_id"`
+	ToAccountID   int64     `json:"to_account_id"`
+	ItemID        int64     `json:"item_id"`
+	CreatedAt     time.Time `json:"created_at"`
 }
 
 type Gacha struct {
@@ -29,10 +48,11 @@ type Gacha struct {
 }
 
 type Gallery struct {
-	ID        int64     `json:"id"`
-	OwnerID   int64     `json:"owner_id"`
-	ItemID    int64     `json:"item_id"`
-	CreatedAt time.Time `json:"created_at"`
+	ID         int64     `json:"id"`
+	OwnerID    int64     `json:"owner_id"`
+	ItemID     int64     `json:"item_id"`
+	ExchangeAt time.Time `json:"exchange_at"`
+	CreatedAt  time.Time `json:"created_at"`
 }
 
 type Item struct {

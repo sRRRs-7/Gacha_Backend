@@ -14,7 +14,7 @@ func RandomCreateItem(t *testing.T) Item {
 	itemName := utils.RandomItemName()
 	itemUrl := utils.RandomItemUrl()
 
-	category, err := testQueries.GetCategory(context.Background(), "vuqlrn")
+	category, err := testQueries.GetCategory(context.Background(), "sejuvi")
 	require.NoError(t, err)
 	require.NotEmpty(t, category)
 

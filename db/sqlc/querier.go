@@ -10,23 +10,31 @@ import (
 
 type Querier interface {
 	CreateAccount(ctx context.Context, arg CreateAccountParams) (Account, error)
+	CreateApproval(ctx context.Context, arg CreateApprovalParams) (Approval, error)
 	CreateCategory(ctx context.Context, category string) (Category, error)
+	CreateExchange(ctx context.Context, arg CreateExchangeParams) (Exchange, error)
 	CreateGacha(ctx context.Context, arg CreateGachaParams) (Gacha, error)
 	CreateGallery(ctx context.Context, arg CreateGalleryParams) (Gallery, error)
 	CreateItem(ctx context.Context, arg CreateItemParams) (Item, error)
 	CreateSession(ctx context.Context, arg CreateSessionParams) (Session, error)
 	CreateUser(ctx context.Context, arg CreateUserParams) (User, error)
 	DeleteAccount(ctx context.Context, id int64) error
+	DeleteApproval(ctx context.Context, id int64) error
 	DeleteItem(ctx context.Context, id int64) error
 	GetAccount(ctx context.Context, id int64) (Account, error)
+	GetApproval(ctx context.Context, id int64) (Approval, error)
 	GetCategory(ctx context.Context, category string) (Category, error)
+	GetExchange(ctx context.Context, id int64) (Exchange, error)
 	GetGacha(ctx context.Context, id int64) (Gacha, error)
 	GetGallery(ctx context.Context, id int64) (Gallery, error)
 	GetItem(ctx context.Context, id int64) (Item, error)
 	GetSession(ctx context.Context, id int64) (Session, error)
 	GetUser(ctx context.Context, userName string) (User, error)
 	ListAccounts(ctx context.Context, arg ListAccountsParams) ([]Account, error)
+	ListApproval(ctx context.Context, arg ListApprovalParams) ([]Approval, error)
 	ListCategories(ctx context.Context, arg ListCategoriesParams) ([]Category, error)
+	ListExchangeFromAccount(ctx context.Context, arg ListExchangeFromAccountParams) ([]Exchange, error)
+	ListExchangeToAccount(ctx context.Context, arg ListExchangeToAccountParams) ([]Exchange, error)
 	ListGachas(ctx context.Context, arg ListGachasParams) ([]Gacha, error)
 	ListGalleriesById(ctx context.Context, arg ListGalleriesByIdParams) ([]Gallery, error)
 	ListGalleriesByItemId(ctx context.Context, arg ListGalleriesByItemIdParams) ([]Gallery, error)
@@ -36,7 +44,10 @@ type Querier interface {
 	ListItemsByItemName(ctx context.Context, arg ListItemsByItemNameParams) ([]Item, error)
 	ListItemsByRating(ctx context.Context, arg ListItemsByRatingParams) ([]Item, error)
 	UpdateAccount(ctx context.Context, arg UpdateAccountParams) (Account, error)
+	UpdateApprovalRequest(ctx context.Context, arg UpdateApprovalRequestParams) (Approval, error)
+	UpdateApprovalResponse(ctx context.Context, arg UpdateApprovalResponseParams) (Approval, error)
 	UpdateBalance(ctx context.Context, arg UpdateBalanceParams) (Account, error)
+	UpdateGallery(ctx context.Context, arg UpdateGalleryParams) (Gallery, error)
 	UpdateItem(ctx context.Context, arg UpdateItemParams) (Item, error)
 }
 

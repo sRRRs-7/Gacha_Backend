@@ -5,3 +5,5 @@ DROP TABLE IF EXISTS "galleries";
 DROP TABLE IF EXISTS "items";
 DROP TABLE IF EXISTS "sessions";
 DROP TABLE IF EXISTS "users";
+DROP TABLE IF EXISTS "exchanges";
+DROP TABLE IF EXISTS "records";

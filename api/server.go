@@ -76,6 +76,12 @@ func (server *Server) setupRouter() {
 	gachaRouter.GET("/get/:id", server.GetGachaApi)
 	gachaRouter.GET("/list", server.ListGachaApi)
 
+	exchangeRouter := router.Group("/exchange").Use(authMiddleware(server.tokenMaker))
+	exchangeRouter.POST("/create", server.CreateExchangeApi)
+	exchangeRouter.GET("/get/:id", server.GetExchangeApi)
+	exchangeRouter.GET("/listFromExchange", server.ListExchangeFromAccountApi)
+	exchangeRouter.GET("/listToExchange", server.ListExchangeToAccountApi)
+
 	server.router = router
 }
 

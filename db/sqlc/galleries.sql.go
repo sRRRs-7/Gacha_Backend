@@ -7,6 +7,7 @@ package db
 
 import (
 	"context"
+	"time"
 )
 
 const createGallery = `-- name: CreateGallery :one
@@ -14,7 +15,7 @@ INSERT INTO galleries (
     owner_id, item_id
 ) VALUES (
     $1, $2
-) RETURNING id, owner_id, item_id, created_at
+) RETURNING id, owner_id, item_id, exchange_at, created_at
 `
 
 type CreateGalleryParams struct {
@@ -29,13 +30,14 @@ func (q *Queries) CreateGallery(ctx context.Context, arg CreateGalleryParams) (G
 		&i.ID,
 		&i.OwnerID,
 		&i.ItemID,
+		&i.ExchangeAt,
 		&i.CreatedAt,
 	)
 	return i, err
 }
 
 const getGallery = `-- name: GetGallery :one
-SELECT id, owner_id, item_id, created_at FROM galleries
+SELECT id, owner_id, item_id, exchange_at, created_at FROM galleries
 WHERE id = $1 LIMIT 1
 `
 
@@ -46,13 +48,14 @@ func (q *Queries) GetGallery(ctx context.Context, id int64) (Gallery, error) {
 		&i.ID,
 		&i.OwnerID,
 		&i.ItemID,
+		&i.ExchangeAt,
 		&i.CreatedAt,
 	)
 	return i, err
 }
 
 const listGalleriesById = `-- name: ListGalleriesById :many
-SELECT id, owner_id, item_id, created_at FROM galleries
+SELECT id, owner_id, item_id, exchange_at, created_at FROM galleries
 WHERE owner_id = $1
 ORDER BY id ASC
 LIMIT $2
@@ -78,6 +81,7 @@ func (q *Queries) ListGalleriesById(ctx context.Context, arg ListGalleriesByIdPa
 			&i.ID,
 			&i.OwnerID,
 			&i.ItemID,
+			&i.ExchangeAt,
 			&i.CreatedAt,
 		); err != nil {
 			return nil, err
@@ -94,7 +98,7 @@ func (q *Queries) ListGalleriesById(ctx context.Context, arg ListGalleriesByIdPa
 }
 
 const listGalleriesByItemId = `-- name: ListGalleriesByItemId :many
-SELECT id, owner_id, item_id, created_at FROM galleries
+SELECT id, owner_id, item_id, exchange_at, created_at FROM galleries
 WHERE item_id = $1
 ORDER BY item_id ASC
 LIMIT $2
@@ -120,6 +124,7 @@ func (q *Queries) ListGalleriesByItemId(ctx context.Context, arg ListGalleriesBy
 			&i.ID,
 			&i.OwnerID,
 			&i.ItemID,
+			&i.ExchangeAt,
 			&i.CreatedAt,
 		); err != nil {
 			return nil, err
@@ -133,4 +138,36 @@ func (q *Queries) ListGalleriesByItemId(ctx context.Context, arg ListGalleriesBy
 		return nil, err
 	}
 	return items, nil
+}
+
+const updateGallery = `-- name: UpdateGallery :one
+UPDATE galleries
+SET owner_id = $3, exchange_at = $4
+WHERE owner_id = $1 AND item_id = $2
+RETURNING id, owner_id, item_id, exchange_at, created_at
+`
+
+type UpdateGalleryParams struct {
+	OwnerID    int64     `json:"owner_id"`
+	ItemID     int64     `json:"item_id"`
+	OwnerID_2  int64     `json:"owner_id_2"`
+	ExchangeAt time.Time `json:"exchange_at"`
+}
+
+func (q *Queries) UpdateGallery(ctx context.Context, arg UpdateGalleryParams) (Gallery, error) {
+	row := q.db.QueryRowContext(ctx, updateGallery,
+		arg.OwnerID,
+		arg.ItemID,
+		arg.OwnerID_2,
+		arg.ExchangeAt,
+	)
+	var i Gallery
+	err := row.Scan(
+		&i.ID,
+		&i.OwnerID,
+		&i.ItemID,
+		&i.ExchangeAt,
+		&i.CreatedAt,
+	)
+	return i, err
 }

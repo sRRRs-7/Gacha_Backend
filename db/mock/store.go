@@ -50,6 +50,21 @@ func (mr *MockStoreMockRecorder) CreateAccount(arg0, arg1 interface{}) *gomock.C
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateAccount", reflect.TypeOf((*MockStore)(nil).CreateAccount), arg0, arg1)
 }
 
+// CreateApproval mocks base method.
+func (m *MockStore) CreateApproval(arg0 context.Context, arg1 db.CreateApprovalParams) (db.Approval, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CreateApproval", arg0, arg1)
+	ret0, _ := ret[0].(db.Approval)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CreateApproval indicates an expected call of CreateApproval.
+func (mr *MockStoreMockRecorder) CreateApproval(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateApproval", reflect.TypeOf((*MockStore)(nil).CreateApproval), arg0, arg1)
+}
+
 // CreateCategory mocks base method.
 func (m *MockStore) CreateCategory(arg0 context.Context, arg1 string) (db.Category, error) {
 	m.ctrl.T.Helper()
@@ -63,6 +78,21 @@ func (m *MockStore) CreateCategory(arg0 context.Context, arg1 string) (db.Catego
 func (mr *MockStoreMockRecorder) CreateCategory(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateCategory", reflect.TypeOf((*MockStore)(nil).CreateCategory), arg0, arg1)
+}
+
+// CreateExchange mocks base method.
+func (m *MockStore) CreateExchange(arg0 context.Context, arg1 db.CreateExchangeParams) (db.Exchange, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CreateExchange", arg0, arg1)
+	ret0, _ := ret[0].(db.Exchange)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CreateExchange indicates an expected call of CreateExchange.
+func (mr *MockStoreMockRecorder) CreateExchange(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateExchange", reflect.TypeOf((*MockStore)(nil).CreateExchange), arg0, arg1)
 }
 
 // CreateGacha mocks base method.
@@ -154,6 +184,20 @@ func (mr *MockStoreMockRecorder) DeleteAccount(arg0, arg1 interface{}) *gomock.C
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteAccount", reflect.TypeOf((*MockStore)(nil).DeleteAccount), arg0, arg1)
 }
 
+// DeleteApproval mocks base method.
+func (m *MockStore) DeleteApproval(arg0 context.Context, arg1 int64) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "DeleteApproval", arg0, arg1)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// DeleteApproval indicates an expected call of DeleteApproval.
+func (mr *MockStoreMockRecorder) DeleteApproval(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteApproval", reflect.TypeOf((*MockStore)(nil).DeleteApproval), arg0, arg1)
+}
+
 // DeleteItem mocks base method.
 func (m *MockStore) DeleteItem(arg0 context.Context, arg1 int64) error {
 	m.ctrl.T.Helper()
@@ -166,6 +210,21 @@ func (m *MockStore) DeleteItem(arg0 context.Context, arg1 int64) error {
 func (mr *MockStoreMockRecorder) DeleteItem(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteItem", reflect.TypeOf((*MockStore)(nil).DeleteItem), arg0, arg1)
+}
+
+// ExchangeTx mocks base method.
+func (m *MockStore) ExchangeTx(arg0 context.Context, arg1 db.ExchangeTxParams) (db.ExchangeTxResult, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ExchangeTx", arg0, arg1)
+	ret0, _ := ret[0].(db.ExchangeTxResult)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ExchangeTx indicates an expected call of ExchangeTx.
+func (mr *MockStoreMockRecorder) ExchangeTx(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ExchangeTx", reflect.TypeOf((*MockStore)(nil).ExchangeTx), arg0, arg1)
 }
 
 // GetAccount mocks base method.
@@ -183,6 +242,21 @@ func (mr *MockStoreMockRecorder) GetAccount(arg0, arg1 interface{}) *gomock.Call
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAccount", reflect.TypeOf((*MockStore)(nil).GetAccount), arg0, arg1)
 }
 
+// GetApproval mocks base method.
+func (m *MockStore) GetApproval(arg0 context.Context, arg1 int64) (db.Approval, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetApproval", arg0, arg1)
+	ret0, _ := ret[0].(db.Approval)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetApproval indicates an expected call of GetApproval.
+func (mr *MockStoreMockRecorder) GetApproval(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetApproval", reflect.TypeOf((*MockStore)(nil).GetApproval), arg0, arg1)
+}
+
 // GetCategory mocks base method.
 func (m *MockStore) GetCategory(arg0 context.Context, arg1 string) (db.Category, error) {
 	m.ctrl.T.Helper()
@@ -196,6 +270,21 @@ func (m *MockStore) GetCategory(arg0 context.Context, arg1 string) (db.Category,
 func (mr *MockStoreMockRecorder) GetCategory(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCategory", reflect.TypeOf((*MockStore)(nil).GetCategory), arg0, arg1)
+}
+
+// GetExchange mocks base method.
+func (m *MockStore) GetExchange(arg0 context.Context, arg1 int64) (db.Exchange, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetExchange", arg0, arg1)
+	ret0, _ := ret[0].(db.Exchange)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetExchange indicates an expected call of GetExchange.
+func (mr *MockStoreMockRecorder) GetExchange(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetExchange", reflect.TypeOf((*MockStore)(nil).GetExchange), arg0, arg1)
 }
 
 // GetGacha mocks base method.
@@ -288,6 +377,21 @@ func (mr *MockStoreMockRecorder) ListAccounts(arg0, arg1 interface{}) *gomock.Ca
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListAccounts", reflect.TypeOf((*MockStore)(nil).ListAccounts), arg0, arg1)
 }
 
+// ListApproval mocks base method.
+func (m *MockStore) ListApproval(arg0 context.Context, arg1 db.ListApprovalParams) ([]db.Approval, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ListApproval", arg0, arg1)
+	ret0, _ := ret[0].([]db.Approval)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ListApproval indicates an expected call of ListApproval.
+func (mr *MockStoreMockRecorder) ListApproval(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListApproval", reflect.TypeOf((*MockStore)(nil).ListApproval), arg0, arg1)
+}
+
 // ListCategories mocks base method.
 func (m *MockStore) ListCategories(arg0 context.Context, arg1 db.ListCategoriesParams) ([]db.Category, error) {
 	m.ctrl.T.Helper()
@@ -301,6 +405,36 @@ func (m *MockStore) ListCategories(arg0 context.Context, arg1 db.ListCategoriesP
 func (mr *MockStoreMockRecorder) ListCategories(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListCategories", reflect.TypeOf((*MockStore)(nil).ListCategories), arg0, arg1)
+}
+
+// ListExchangeFromAccount mocks base method.
+func (m *MockStore) ListExchangeFromAccount(arg0 context.Context, arg1 db.ListExchangeFromAccountParams) ([]db.Exchange, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ListExchangeFromAccount", arg0, arg1)
+	ret0, _ := ret[0].([]db.Exchange)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ListExchangeFromAccount indicates an expected call of ListExchangeFromAccount.
+func (mr *MockStoreMockRecorder) ListExchangeFromAccount(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListExchangeFromAccount", reflect.TypeOf((*MockStore)(nil).ListExchangeFromAccount), arg0, arg1)
+}
+
+// ListExchangeToAccount mocks base method.
+func (m *MockStore) ListExchangeToAccount(arg0 context.Context, arg1 db.ListExchangeToAccountParams) ([]db.Exchange, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ListExchangeToAccount", arg0, arg1)
+	ret0, _ := ret[0].([]db.Exchange)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ListExchangeToAccount indicates an expected call of ListExchangeToAccount.
+func (mr *MockStoreMockRecorder) ListExchangeToAccount(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListExchangeToAccount", reflect.TypeOf((*MockStore)(nil).ListExchangeToAccount), arg0, arg1)
 }
 
 // ListGachas mocks base method.
@@ -438,6 +572,36 @@ func (mr *MockStoreMockRecorder) UpdateAccount(arg0, arg1 interface{}) *gomock.C
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateAccount", reflect.TypeOf((*MockStore)(nil).UpdateAccount), arg0, arg1)
 }
 
+// UpdateApprovalRequest mocks base method.
+func (m *MockStore) UpdateApprovalRequest(arg0 context.Context, arg1 db.UpdateApprovalRequestParams) (db.Approval, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "UpdateApprovalRequest", arg0, arg1)
+	ret0, _ := ret[0].(db.Approval)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateApprovalRequest indicates an expected call of UpdateApprovalRequest.
+func (mr *MockStoreMockRecorder) UpdateApprovalRequest(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateApprovalRequest", reflect.TypeOf((*MockStore)(nil).UpdateApprovalRequest), arg0, arg1)
+}
+
+// UpdateApprovalResponse mocks base method.
+func (m *MockStore) UpdateApprovalResponse(arg0 context.Context, arg1 db.UpdateApprovalResponseParams) (db.Approval, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "UpdateApprovalResponse", arg0, arg1)
+	ret0, _ := ret[0].(db.Approval)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateApprovalResponse indicates an expected call of UpdateApprovalResponse.
+func (mr *MockStoreMockRecorder) UpdateApprovalResponse(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateApprovalResponse", reflect.TypeOf((*MockStore)(nil).UpdateApprovalResponse), arg0, arg1)
+}
+
 // UpdateBalance mocks base method.
 func (m *MockStore) UpdateBalance(arg0 context.Context, arg1 db.UpdateBalanceParams) (db.Account, error) {
 	m.ctrl.T.Helper()
@@ -451,6 +615,21 @@ func (m *MockStore) UpdateBalance(arg0 context.Context, arg1 db.UpdateBalancePar
 func (mr *MockStoreMockRecorder) UpdateBalance(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateBalance", reflect.TypeOf((*MockStore)(nil).UpdateBalance), arg0, arg1)
+}
+
+// UpdateGallery mocks base method.
+func (m *MockStore) UpdateGallery(arg0 context.Context, arg1 db.UpdateGalleryParams) (db.Gallery, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "UpdateGallery", arg0, arg1)
+	ret0, _ := ret[0].(db.Gallery)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateGallery indicates an expected call of UpdateGallery.
+func (mr *MockStoreMockRecorder) UpdateGallery(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateGallery", reflect.TypeOf((*MockStore)(nil).UpdateGallery), arg0, arg1)
 }
 
 // UpdateItem mocks base method.
